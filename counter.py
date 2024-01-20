@@ -11,6 +11,13 @@ class FirstWindow(Screen):
     pass
 class SecondWindow(Screen):
     pass
+class ThirdWindow(Screen):
+    pass
+
+class FourthWindow(Screen):
+    pass
+class FifthWindow(Screen):
+    pass
 
 class WindowManager(ScreenManager):
     pass
