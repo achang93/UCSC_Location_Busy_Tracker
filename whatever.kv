@@ -1,0 +1,85 @@
+#:kivy 2.0.0
+#:import utils kivy.utils
+
+<Button>
+    font_size:32
+<MyGrid>
+    name:name
+    pizza:pizza
+
+    canvas.before:
+        Color: 
+            rgba:(1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        padding:50
+        spacing: 30
+        
+        Image:
+            source: 'Santa.png'
+            allow_stretch: True
+            keep_ratio: True
+
+        GridLayout:
+            cols:2
+            spacing:30
+
+            Label:
+                id:name_label
+                text: "Name"
+                #color for lable
+                background_color:(0,0,1,1)
+                canvas.before:
+                    Color:
+                        rgba:self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos:self.pos
+                #color of text
+                color:(0,1,0,1)
+                bold: True
+                italic: True
+                outline_color:(1,1,1)
+                outline_width: 2
+
+
+            TextInput:
+                id: name_input
+                multiline:False
+
+            Label:
+                text: "UCSC Fitness Center"
+                background_color:(0,0,1,1)
+                canvas.before:
+                    Color:
+                        rgba:self.background_color
+                    Rectangle:
+                        size: self.size
+                        pos:self.pos
+                #color of text
+                color:(0,1,0,1)
+                bold: True
+                italic: True
+                outline_color:(1,1,1)
+                outline_width: 2
+            TextInput:
+                id: pizza
+                multiline:False
+        Button:
+            text: "Submit"
+            font_size: 50
+            bold: True
+            on_press: root.press()
+            #center button
+            pos_hint:{'center_x':0.5}
+            #resize button
+            size_hint:(0.3,0.3)
+            #RGB - A
+            background_normal:''
+            #background_color: (253/255,199/255,0,1)
+            background_color:utils.get_color_from_hex('#fdc700')
