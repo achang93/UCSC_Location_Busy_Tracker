@@ -13,12 +13,20 @@ class childApp(GridLayout):
         self.s_name = TextInput()
         self.add_widget(self.s_name)
 
+
         self.add_widget(Label(text = "Student Gender"))
         self.s_gender = TextInput()
         self.add_widget(self.s_gender)
 
+        self.press = Button(text = 'click me')
+        self.press.bind(on_press = self.click_me)
+        self.add_widget(self.press)
+
+    def click_me(self, instance):
+        print(f"name of student is {self.s_name.text}")
+
 class parentApp(App):
     def build(self):
-        return childApp
+        return childApp()
 if __name__ == "__main__":
     parentApp().run()
