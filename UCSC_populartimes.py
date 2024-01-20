@@ -79,32 +79,28 @@ def busy_and_hours(location, day, time):
     data = get_busy_data(day, time, api_key, place_id)
 
     #get opening hours, just some mumble jumble
-    #map_client = googlemaps.Client(api_key)
-    #place_details = map_client.place(place_id)
-    #details_results = place_details.get('result')
-    #opening_hours_data = details_results['opening_hours']
+    map_client = googlemaps.Client(api_key)
+    place_details = map_client.place(place_id)
+    details_results = place_details.get('result')
 
-    opening_hours_times = googlemaps.Client(api_key).place(place_id).get('result')['opening_hours'].get('periods')
+    #data for opening hours
+    opening_hours_data = details_results['opening_hours']
 
+    #data for each weekday
+    opening_hours_times = opening_hours_data.get("weekday_text")
+
+    #data for a specific weekday
     day_to_number = {"Monday": 0, "Tuesday": 1, "Wednesday": 2, "Thursday": 3, "Friday": 4, "Saturday": 5, "Sunday": 6}
-    close_time = opening_hours_times[day_to_number.get(day) * 2].get('close').get('time')
-    open_time = opening_hours_times[day_to_number.get(day) * 2 + 1].get('open').get('time')
+    opening_hours = opening_hours_times[day_to_number.get(day)]
+    opening_hours = opening_hours[opening_hours.find(":") + 2:]
+    open_time = opening_hours[0:opening_hours.find(":")]
+    close_time = opening_hours[opening_hours.find("–") + 1: opening_hours.find(":", opening_hours.find("–"))]
 
-    open_times = ""
-    if open_time[0] == '0':
-        open_times = open_time[1] + ':' + open_time[2:]
-    else:
-        open_times += close_time[0:2] + ':' + open_time[2:]
+    #boolean if open or not
+    # REMINDER THIS IS BASED ON THE CURRENT TIME NOT A GIVEN TIME
+    is_open = opening_hours_data.get("open_now")
 
-    open_times += '-'
-
-    if close_time[0] == '0':
-        open_times = open_time[1] + ':' + close_time[2:]
-    else:
-        open_times += close_time[0:2] + ':' + close_time[2:]
-
-    return check_how_busy(data), open_times
+    return check_how_busy(data), opening_hours, int(open_time), int(close_time), is_open
 
 if __name__ == "__main__":
-    busy, open = busy_and_hours("C9/C10 Dining Hall", "Monday", 12)
-    print(open)
+    busy, hours, open, close, is_open = busy_and_hours("C9/C10 Dining Hall", "Saturday", 1)
