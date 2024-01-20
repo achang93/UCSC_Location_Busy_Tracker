@@ -3,8 +3,19 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
 
-Builder.load_file('whatever.kv')
+
+#Define different Screens
+class FirstWindow(Screen):
+    pass
+class SecondWindow(Screen):
+    pass
+
+class WindowManager(ScreenManager):
+    pass
+
+kv = Builder.load_file('whatever.kv')
 class MyGrid(Widget):
 
 
@@ -37,12 +48,9 @@ class MyGrid(Widget):
         self.add_widget(self.press)'''
 
     def press(self):
-        name = self.name.text
-        pizza = self.pizza.text
-        print(f'{name} and {pizza}')
-
-        self.name.text = ""
-        self.pizza.text = ""
+        name = self.ids.name_input.text
+        self.ids.name_label.text = name
+        self.ids.name_input.text = ''
         
         '''if self.name.text != '':
             print(f"name of student is {self.name.text}")
@@ -53,7 +61,7 @@ class MyGrid(Widget):
 
 class Awe(App):
     def build(self):
-        return MyGrid()
+        return kv 
 if __name__ == "__main__":
     Awe().run()
 
