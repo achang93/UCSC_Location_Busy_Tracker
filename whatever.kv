@@ -96,15 +96,44 @@ WindowManager:
 
 <SecondWindow>:
     name:"Fitness"
+    canvas.before:
+        Color: 
+            rgba:(1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
 
 
     BoxLayout:
         orientation: "vertical"
         size:root.width, root.height
+        padding:50
+        spacing: 30
 
-        Button:
+        Label:
+            text: "UCSC Fitness Center"
+            canvas.before:
+                Color:
+                    rgba:(1,1,1,1)
+                Rectangle:
+                    size: self.size
+                    pos:self.pos
+            #color of text
+            color:(0,0,0,1)
+            font_size: 50
+            size_hint:(1,0.3)
+            bold: True
+            italic: True
+            underline: True
+            outline_color:(1,1,1)
+            outline_width: 2
+
+        RoundedButton:
             text: "Go Back"
             font_size: 32
+            pos_hint:{'center_x':0.5}
+            #resize button
+            size_hint:(1,0.3)
             on_release: 
                 app.root.current = "first"
                 root.manager.transition.direction = "down"
