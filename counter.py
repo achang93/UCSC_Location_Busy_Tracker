@@ -4,8 +4,9 @@ from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.core.window import Window
 
-
+Window.size = (500,700)
 #Define different Screens
 class FirstWindow(Screen):
     pass
