@@ -1,10 +1,13 @@
 #:kivy 2.0.0
 #:import utils kivy.utils
 
-<Button>
-    font_size:32
-<MyGrid>
+WindowManager:
+    FirstWindow:
+    SecondWindow:
 
+
+<FirstWindow>:
+    name:"first"
 
     canvas.before:
         Color: 
@@ -20,7 +23,7 @@
         spacing: 30
         
         Image:
-            source: 'Slug.png'
+            source: 'Santa.png'
             allow_stretch: True
             keep_ratio: True
 
@@ -28,47 +31,29 @@
             cols:2
             spacing:30
 
-            Label:
-                id:name_label
-                text: "Name"
-                #color for lable
-                background_color:(0,0,1,1)
-                canvas.before:
-                    Color:
-                        rgba:self.background_color
-                    Rectangle:
-                        size: self.size
-                        pos:self.pos
-                #color of text
-                color:(0,1,0,1)
+            
+            Button:
+                text: "Fitness Center"
+                font_size: 32
                 bold: True
-                italic: True
-                outline_color:(1,1,1)
-                outline_width: 2
-
-
-            TextInput:
-                id: name_input
-                multiline:False
-
-            Label:
-                text: "UCSC Fitness Center"
-                background_color:(0,0,1,1)
-                canvas.before:
-                    Color:
-                        rgba:self.background_color
-                    Rectangle:
-                        size: self.size
-                        pos:self.pos
-                #color of text
-                color:(0,1,0,1)
+                sizehint: 0.1,0.1
+                background_normal:''
+                #background_color: (253/255,199/255,0,1)
+                background_color:utils.get_color_from_hex('#fdc700')
+                on_release: 
+                    app.root.current = "second"
+                    root.manager.transition.direction = "up"
+            Button:
+                text: "McHenry Library"
+                font_size: 32
                 bold: True
-                italic: True
-                outline_color:(1,1,1)
-                outline_width: 2
-            TextInput:
-                id: pizza
-                multiline:False
+                sizehint: 0.1,0.1
+                background_normal:''
+                #background_color: (253/255,199/255,0,1)
+                background_color:utils.get_color_from_hex('#fdc700')
+                on_release: 
+                    app.root.current = "second"
+                    root.manager.transition.direction = "up"
         Button:
             text: "Submit"
             font_size: 50
@@ -82,3 +67,20 @@
             background_normal:''
             #background_color: (253/255,199/255,0,1)
             background_color:utils.get_color_from_hex('#fdc700')
+
+
+
+<SecondWindow>:
+    name:"second"
+
+
+    BoxLayout:
+        orientation: "vertical"
+        size:root.width, root.height
+
+        Button:
+            text: "Go Back"
+            font_size: 32
+            on_release: 
+                app.root.current = "first"
+                root.manager.transition.direction = "down"
