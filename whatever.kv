@@ -4,6 +4,9 @@
 WindowManager:
     FirstWindow:
     SecondWindow:
+    ThirdWindow:
+    FourthWindow:
+    FifthWindow:
 
 
 <FirstWindow>:
@@ -23,7 +26,7 @@ WindowManager:
         spacing: 30
         
         Image:
-            source: 'Slug.png'
+            source: 'Santa.png'
             allow_stretch: True
             keep_ratio: True
 
@@ -32,46 +35,67 @@ WindowManager:
             spacing:30
 
             
-            Button:
+            RoundedButton:
                 text: "Fitness Center"
                 font_size: 32
                 bold: True
                 sizehint: 0.1,0.1
                 background_normal:''
                 #background_color: (253/255,199/255,0,1)
-                background_color:utils.get_color_from_hex('#fdc700')
+                #background_color:utils.get_color_from_hex('#fdc700')
+
                 on_release: 
-                    app.root.current = "second"
+                    app.root.current = "Fitness"
                     root.manager.transition.direction = "up"
-            Button:
+            RoundedButton:
                 text: "McHenry Library"
                 font_size: 32
                 bold: True
                 sizehint: 0.1,0.1
                 background_normal:''
                 #background_color: (253/255,199/255,0,1)
-                background_color:utils.get_color_from_hex('#fdc700')
+                #background_color:utils.get_color_from_hex('#fdc700')
                 on_release: 
-                    app.root.current = "second"
+                    app.root.current = "Library"
                     root.manager.transition.direction = "up"
-        Button:
-            text: "Submit"
-            font_size: 50
-            bold: True
-            on_press: root.press()
-            #center button
-            pos_hint:{'center_x':0.5}
-            #resize button
-            size_hint:(0.3,0.3)
-            #RGB - A
-            background_normal:''
-            #background_color: (253/255,199/255,0,1)
-            background_color:utils.get_color_from_hex('#fdc700')
+            RoundedButton:
+                text: "Baytree Bookstore"
+                font_size: 32
+                bold: True
+                sizehint: 0.1,0.1
+                background_normal:''
+                #background_color: (253/255,199/255,0,1)
+                #background_color:utils.get_color_from_hex('#fdc700')
+                on_release: 
+                    app.root.current = "Baytree"
+                    root.manager.transition.direction = "up"
+            RoundedButton:
+                text: "S&E"
+                font_size: 32
+                bold: True
+                sizehint: 0.1,0.1
+                background_normal:''
+                #background_color: (253/255,199/255,0,1)
+                #background_color:utils.get_color_from_hex('#fdc700')
+                on_release: 
+                    app.root.current = "S&E"
+                    root.manager.transition.direction = "up"
+
+<RoundedButton@Button>
+    background_color:(0,0,0,0)
+    background_normal:''
+    canvas.before:
+        Color:
+            rgba:utils.get_color_from_hex('#fdc700')
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius:[58]
 
 
 
 <SecondWindow>:
-    name:"second"
+    name:"Fitness"
 
 
     BoxLayout:
@@ -80,6 +104,49 @@ WindowManager:
 
         Button:
             text: "Go Back"
+            font_size: 32
+            on_release: 
+                app.root.current = "first"
+                root.manager.transition.direction = "down"
+
+<ThirdWindow>:
+    name:"Library"
+
+
+    BoxLayout:
+        orientation: "vertical"
+        size:root.width, root.height
+
+        Button:
+            text: "Go Back 1"
+            font_size: 32
+            on_release: 
+                app.root.current = "first"
+                root.manager.transition.direction = "down"
+<FourthWindow>:
+    name:"Baytree"
+
+
+    BoxLayout:
+        orientation: "vertical"
+        size:root.width, root.height
+
+        Button:
+            text: "Go Back 2"
+            font_size: 32
+            on_release: 
+                app.root.current = "first"
+                root.manager.transition.direction = "down"
+<FifthWindow>:
+    name:"S&E"
+
+
+    BoxLayout:
+        orientation: "vertical"
+        size:root.width, root.height
+
+        Button:
+            text: "Go Back 3"
             font_size: 32
             on_release: 
                 app.root.current = "first"
