@@ -29,7 +29,7 @@ class FifthWindow(Screen):
 class WindowManager(ScreenManager):
     pass
 
-kv = Builder.load_file('whatever.kv')
+kv = Builder.load_file('application.kv')
 class MyGrid(Widget):
 
 
