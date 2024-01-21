@@ -26,7 +26,7 @@ def get_busy_data(current_day, current_hour, api_key, place_id):
 
     # is the data for the current day
     current_day_data = all_week_data[current_day]
-
+    
     # data on the current hour
     current_hour_data = current_day_data.get("data")[current_hour]
 
@@ -93,6 +93,10 @@ def busy_and_hours(location):
     opening_hours_times = opening_hours_data.get("weekday_text")
 
     opening_hours = opening_hours_times[day]
+
+    if "Closed" in opening_hours:
+        return check_how_busy(data), opening_hours[opening_hours.find("Closed"):], is_open
+
     opening_hours = opening_hours[opening_hours.find(":") + 2:]
     opening_hours = ''.join(s for s in opening_hours if ord(s)>31 and ord(s)<126)
     opening_hours = opening_hours[0:opening_hours.find("M") + 1] + "-" + opening_hours[opening_hours.find("M") + 1:]
@@ -104,7 +108,7 @@ def check_UCSC_fitness():
     if is_open:
         return f'Open\n{busy}\n{hours}'
     else:
-        return f"Closed"
+        return f"Closed\nTomorrow's hours: {hours}"
 
 
 def check_UCSC_mchenry():
@@ -112,22 +116,22 @@ def check_UCSC_mchenry():
     if is_open:
         return f'Open\n{busy}\n{hours}'
     else:
-        return f"Closed"
+        return f"Closed\nTomorrow's hours: {hours}"
 
 def check_UCSC_sne():
     busy, hours, is_open = busy_and_hours("Science and Engineering Library")
     if is_open:
         return f'Open\n{busy}\n{hours}'
     else:
-        return f"Closed"
+        return f"Closed\nTomorrow's hours: {hours}"
 
 def check_UCSC_baytree():
     busy, hours, is_open = busy_and_hours("Bay Tree Campus Store")
     if is_open:
         return "Open", busy, hours
     else:
-        return f"Closed"
+        return f"Closed\nTomorrow's hours: {hours}"
 
 if __name__ == "__main__":
-    busy, hours, is_open = busy_and_hours("McHenry Library")
+    busy, hours, is_open = busy_and_hours("Bay Tree Campus Store")
     print(busy, hours, is_open)
