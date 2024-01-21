@@ -100,31 +100,31 @@ def busy_and_hours(location):
 def check_UCSC_fitness():
     busy, hours, is_open = busy_and_hours("Fitness Center")
     if is_open:
-        return busy, hours
+        return f'Open\n{busy}\n{hours}'
     else:
-        return "Closed", hours
+        return f"Closed"
 
 
 def check_UCSC_mchenry():
     busy, hours, is_open = busy_and_hours("McHenry Library")
     if is_open:
-        return "Open", busy, hours
+        return f'Open\n{busy}\n{hours}'
     else:
-        return "Closed", hours
+        return f"Closed"
 
 def check_UCSC_sne():
     busy, hours, is_open = busy_and_hours("Science and Engineering Library")
     if is_open:
-        return "Open", busy, hours
+        return f'Open\n{busy}\n{hours}'
     else:
-        return "Closed", hours
+        return f"Closed"
 
 def check_UCSC_baytree():
     busy, hours, is_open = busy_and_hours("Bay Tree Campus Store")
     if is_open:
         return "Open", busy, hours
     else:
-        return "Closed"
+        return f"Closed"
 
 if __name__ == "__main__":
     busy, hours, is_open = busy_and_hours("Fitness Center")
