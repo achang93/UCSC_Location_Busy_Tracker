@@ -128,7 +128,11 @@ def check_UCSC_fitness():
     busy, hours, is_open, case = busy_and_hours("Fitness Center")
     if is_open:
         if case == 1:
-            hours = "Closing soon"
+            check_next = int(datetime.datetime.now().strftime("%H")) + 1
+            if check_next == 13:
+                check_next = 1
+            ending = hours[-2:]
+            hours = "Closing at " + str(check_next) + ":00 " + ending
             return f'Open\n{busy}\n{hours}'
         else:
             return "Open", busy, hours
@@ -141,7 +145,11 @@ def check_UCSC_mchenry():
     busy, hours, is_open, case = busy_and_hours("McHenry Library")
     if is_open:
         if case == 1:
-            hours = "Closing in less than 1 hour"
+            check_next = int(datetime.datetime.now().strftime("%H")) + 1
+            if check_next == 13:
+                check_next = 1
+            ending = hours[-2:]
+            hours = "Closing at " + str(check_next) + ":00 " + ending
             return f'Open\n{busy}\n{hours}'
         else:
             return "Open", busy, hours
@@ -153,7 +161,11 @@ def check_UCSC_sne():
     busy, hours, is_open, case = busy_and_hours("Science and Engineering Library")
     if is_open:
         if case == 1:
-            hours = "Closing in less than 1 hour"
+            check_next = int(datetime.datetime.now().strftime("%H")) + 1
+            if check_next == 13:
+                check_next = 1
+            ending = hours[-2:]
+            hours = "Closing at " + str(check_next) + ":00 " + ending
             return f'Open\n{busy}\n{hours}'
         else:
             return "Open", busy, hours
@@ -164,7 +176,11 @@ def check_UCSC_baytree():
     busy, hours, is_open, case = busy_and_hours("Safeway")
     if is_open:
         if case == 1:
-            hours = "Closing in less than 1 hour"
+            check_next = int(datetime.datetime.now().strftime("%H"))+1
+            if check_next == 13:
+                check_next = 1
+            ending = hours[-2:]
+            hours = "Closing at " + str(check_next) + ":00 " + ending
             return f'Open\n{busy}\n{hours}'
         else:
             #return "Open", busy, hours
