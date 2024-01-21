@@ -4,7 +4,7 @@ Shows hours of operation, if it is currently open, and how busy it is currently.
 It has a UI for ease of use; just click on the location and get the most recent data.
 
 # Directions:
-- Clone this git into your folder
+- Go to terminal and clone this git into your folder and type in the command below
 -     git clone git@github.com:achang93/UCSC_Location_Busy_Tracker.git
 - Go to terminal
   - Make sure pip3 is installed already 
