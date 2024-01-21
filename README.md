@@ -10,11 +10,11 @@ It has a UI for ease of use; just click on the location and get the most recent 
   - Make sure pip3 is installed already
     - visit https://www.activestate.com/resources/quick-reads/how-to-install-and-use-pip3/ for more information
   - Install Kivy:
-  -     pip3 install kivy
+    -     pip3 install kivy
   - Install Google Maps:
-  -     pip3 install googlemaps
+    -     pip3 install googlemaps
   - Install Geopy:
-  -     pip3 install geopy
+    -     pip3 install geopy
 - Make sure to create your own API key before running the program. With the use of the
 API key, you can access the Google Maps APIs. To learn more about creating an API key,
 visit https://developers.google.com/maps/documentation/javascript/get-api-key.
