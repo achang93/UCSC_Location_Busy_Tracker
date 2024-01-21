@@ -5,6 +5,7 @@ It has a UI for ease of use; just click on the location and get the most recent 
 
 # Directions:
 - Clone this git into your folder
+-     git clone git@github.com:achang93/UCSC_Location_Busy_Tracker.git
 - Go to terminal
   - Make sure pip3 is installed already 
   - Install Kivy:
