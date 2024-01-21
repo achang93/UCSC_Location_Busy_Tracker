@@ -1,5 +1,5 @@
 # UCSC Location Busy Tracker
-It will count and measure the amount of people in a given facility.
+It will measure the busyness of people in a given location in UCSC.
 Shows hours of operation, if it is currently open, and how busy it is currently.
 It has a UI for ease of use; just click on the location and get the most recent data.
 
