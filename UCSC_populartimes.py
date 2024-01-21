@@ -74,6 +74,11 @@ def busy_and_hours(location):
 
     # number based on how busy
     data = get_busy_data(day, time, api_key, place_id)
+    if (data == 0):
+        if day < 6:
+            day = day + 1
+        else:
+            day = 0
 
     # get opening hours, just some mumble jumble
     map_client = googlemaps.Client(api_key)
@@ -82,6 +87,7 @@ def busy_and_hours(location):
 
     # data for opening hours
     opening_hours_data = details_results['opening_hours']
+    is_open = opening_hours_data.get("open_now")
 
     # data for each weekday
     opening_hours_times = opening_hours_data.get("weekday_text")
@@ -90,10 +96,6 @@ def busy_and_hours(location):
     opening_hours = opening_hours[opening_hours.find(":") + 2:]
     opening_hours = ''.join(s for s in opening_hours if ord(s)>31 and ord(s)<126)
     opening_hours = opening_hours[0:opening_hours.find("M") + 1] + "-" + opening_hours[opening_hours.find("M") + 1:]
-
-    # boolean if open or not
-    # REMINDER THIS IS BASED ON THE CURRENT TIME NOT A GIVEN TIME
-    is_open = opening_hours_data.get("open_now")
 
     return check_how_busy(data), opening_hours, is_open
 
@@ -127,5 +129,5 @@ def check_UCSC_baytree():
         return f"Closed"
 
 if __name__ == "__main__":
-    busy, hours, is_open = busy_and_hours("Fitness Center")
+    busy, hours, is_open = busy_and_hours("McHenry Library")
     print(busy, hours, is_open)
