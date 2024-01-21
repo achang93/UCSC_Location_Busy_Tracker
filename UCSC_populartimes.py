@@ -64,7 +64,8 @@ def busy_and_hours(location):
     place_ids = {"McHenry Library": "ChIJk7eypKFBjoAR87wpNgAjQek",
                  "Fitness Center": "ChIJVRW6fKRBjoARlWkP543vP7g",
                  "Bay Tree Campus Store": "ChIJmWae1aBBjoARhPuzroaHOxg",
-                 "Science and Engineering Library": "ChIJWeGcqQpBjoARohHiF-L7tB0"}
+                 "Science and Engineering Library": "ChIJWeGcqQpBjoARohHiF-L7tB0",
+                 "Safeway": "ChIJBxA1LHlqjoARReZVYMFRoJU"}
 
     # raise exception if the place_id isnt found
     try:
@@ -160,13 +161,14 @@ def check_UCSC_sne():
         return f"Closed\nTomorrow's hours: {hours}"
 
 def check_UCSC_baytree():
-    busy, hours, is_open, case = busy_and_hours("Bay Tree Campus Store")
+    busy, hours, is_open, case = busy_and_hours("Safeway")
     if is_open:
         if case == 1:
             hours = "Closing in less than 1 hour"
             return f'Open\n{busy}\n{hours}'
         else:
-            return "Open", busy, hours
+            #return "Open", busy, hours
+            return f'Open\n{busy}\n{hours}'
     else:
         return f"Closed\nTomorrow's hours: {hours}"
 

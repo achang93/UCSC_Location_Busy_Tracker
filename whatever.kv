@@ -208,7 +208,7 @@ WindowManager:
                     size: self.size
                     pos:self.pos
             #color of text
-            color:(0,1,0,1) if check_UCSC_fitness()[0]=='O' else (1,0,0,1)
+            color:(14/255, 97/255, 14/255,1) if check_UCSC_mchenry()[0]=='O' else (1,0,0,1)
             font_size: 75
             size_hint:(1,0.4)
             bold: True
@@ -270,7 +270,7 @@ WindowManager:
                     size: self.size
                     pos:self.pos
             #color of text
-            color:(0,1,0,1) if check_UCSC_fitness()[0]=='O' else (1,0,0,1)
+            color:(14/255, 97/255, 14/255,1) if check_UCSC_baytree()[0]=='O' else (1,0,0,1)
             font_size: 75
             size_hint:(1,0.4)
             bold: True
@@ -331,7 +331,7 @@ WindowManager:
                     size: self.size
                     pos:self.pos
             #color of text
-            color:(0,1,0,1) if check_UCSC_fitness()[0]=='O' else (1,0,0,1)
+            color:(14/255, 97/255, 14/255,1) if check_UCSC_sne()[0]=='O' else (1,0,0,1)
             font_size: 75
             size_hint:(1,0.4)
             bold: True
