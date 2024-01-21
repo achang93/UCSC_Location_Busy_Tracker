@@ -18,7 +18,7 @@ WindowManager:
 
     canvas.before:
         Color: 
-            rgba:(1,1,1)
+            rgba:utils.get_color_from_hex('#fdc700')
         Rectangle:
             pos: self.pos
             size: self.size
@@ -33,6 +33,7 @@ WindowManager:
             source: 'Slug.png'
             allow_stretch: True
             keep_ratio: True
+            
 
         GridLayout:
             cols:2
@@ -41,7 +42,7 @@ WindowManager:
             
             RoundedButton:
                 text: "Fitness Center"
-                font_size: 40
+                font_size: 75
                 bold: True
                 sizehint: 0.1,0.1
                 background_normal:''
@@ -54,7 +55,7 @@ WindowManager:
                     root.manager.transition.direction = "up"
             RoundedButton:
                 text: "McHenry Library"
-                font_size: 40
+                font_size: 75
                 on_release:
                     check_UCSC_mchenry()
                     app.root.current = "Library"
@@ -68,7 +69,7 @@ WindowManager:
                 
             RoundedButton:
                 text: "Baytree Bookstore"
-                font_size: 40
+                font_size: 75
                 bold: True
                 sizehint: 0.1,0.1
                 background_normal:''
@@ -80,7 +81,7 @@ WindowManager:
                     root.manager.transition.direction = "up"
             RoundedButton:
                 text: "S&E Library"
-                font_size: 40
+                font_size: 75
                 bold: True
                 sizehint: 0.1,0.1
                 background_normal:''
@@ -94,10 +95,12 @@ WindowManager:
 <RoundedButton@Button>
     background_color:(0,0,0,0)
     background_normal:''
+    font_name: 'Small Island.otf'
+    color:utils.get_color_from_hex('#fdc700')
     canvas.before:
         Color:
-            rgba:utils.get_color_from_hex('#fdc700')
-        
+            rgba:utils.get_color_from_hex('#003C6C')
+            	
         RoundedRectangle:
             size: self.size
             pos: self.pos
@@ -307,6 +310,7 @@ WindowManager:
         spacing: 30
 
         Label:
+            font_name: 'Montserrat-Bold.ttf'
             text: "S&E Library"
             canvas.before:
                 Color:
