@@ -88,6 +88,8 @@ def busy_and_hours(location):
 
     opening_hours = opening_hours_times[day]
     opening_hours = opening_hours[opening_hours.find(":") + 2:]
+    opening_hours = ''.join(s for s in opening_hours if ord(s)>31 and ord(s)<126)
+    opening_hours = opening_hours[0:opening_hours.find("M") + 1] + "-" + opening_hours[opening_hours.find("M") + 1:]
 
     # boolean if open or not
     # REMINDER THIS IS BASED ON THE CURRENT TIME NOT A GIVEN TIME
