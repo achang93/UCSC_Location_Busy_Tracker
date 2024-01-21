@@ -64,8 +64,7 @@ def busy_and_hours(location):
     place_ids = {"McHenry Library": "ChIJk7eypKFBjoAR87wpNgAjQek",
                  "Fitness Center": "ChIJVRW6fKRBjoARlWkP543vP7g",
                  "Bay Tree Campus Store": "ChIJmWae1aBBjoARhPuzroaHOxg",
-                 "Science and Engineering Library": "ChIJWeGcqQpBjoARohHiF-L7tB0",
-                 "Los Pericos": "ChIJERL3niVAjoARl8XPdDVqQ8U"}
+                 "Science and Engineering Library": "ChIJWeGcqQpBjoARohHiF-L7tB0"}
 
     # raise exception if the place_id isnt found
     try:
@@ -96,16 +95,16 @@ def busy_and_hours(location):
     opening_hours = opening_hours_times[day]
 
     if "Closed" in opening_hours:
-        return check_how_busy(data), opening_hours[opening_hours.find("Closed"):], is_open
+        return check_how_busy(data), opening_hours[opening_hours.find("Closed"):], is_open, 0
 
 
     opening_hours = opening_hours[opening_hours.find(":") + 2:]
     opening_hours = ''.join(s for s in opening_hours if ord(s)>31 and ord(s)<126)
     opening_hours = opening_hours[0:opening_hours.find("M") + 1] + "-" + opening_hours[opening_hours.find("M") + 1:]
 
+    # following code is to check whether the location closes in 1 hr or less
     y = opening_hours[opening_hours.find("M") + 1:]
     ending = opening_hours[-2:]
-    print(ending)
     y = str(y)
     y = y[1:]
     x = 0
@@ -117,44 +116,60 @@ def busy_and_hours(location):
     y = y[:x]
     if ending == 'PM':
         y = int(y) + 12
-
-    print(y)
-    print(int(datetime.datetime.now().strftime("%H")))
-
+    # bottom if statement is to check whether it is 1 hr away from closing
     if int(y) - int(datetime.datetime.now().strftime("%H")) == 1:
-        return check_how_busy(data), "Closes in less than 1 hour", is_open
+        return check_how_busy(data), opening_hours, is_open, 1
 
-    return check_how_busy(data), opening_hours, is_open
+    return check_how_busy(data), opening_hours, is_open, 0
 
 def check_UCSC_fitness():
-    busy, hours, is_open = busy_and_hours("Fitness Center")
+    #print("fitness")
+    busy, hours, is_open, case = busy_and_hours("Fitness Center")
     if is_open:
-        return f'Open\n{busy}\n{hours}'
+        if case == 1:
+            hours = "Closing soon"
+            return f'Open\n{busy}\n{hours}'
+        else:
+            return "Open", busy, hours
     else:
         return f"Closed\nTomorrow's hours: {hours}"
 
 
 def check_UCSC_mchenry():
-    busy, hours, is_open = busy_and_hours("McHenry Library")
+    #print("mchenry")
+    busy, hours, is_open, case = busy_and_hours("McHenry Library")
     if is_open:
-        return f'Open\n{busy}\n{hours}'
+        if case == 1:
+            hours = "Closing in less than 1 hour"
+            return f'Open\n{busy}\n{hours}'
+        else:
+            return "Open", busy, hours
     else:
         return f"Closed\nTomorrow's hours: {hours}"
 
 def check_UCSC_sne():
-    busy, hours, is_open = busy_and_hours("Science and Engineering Library")
+    #print("sne")
+    busy, hours, is_open, case = busy_and_hours("Science and Engineering Library")
     if is_open:
-        return f'Open\n{busy}\n{hours}'
+        if case == 1:
+            hours = "Closing in less than 1 hour"
+            return f'Open\n{busy}\n{hours}'
+        else:
+            return "Open", busy, hours
     else:
         return f"Closed\nTomorrow's hours: {hours}"
 
 def check_UCSC_baytree():
-    busy, hours, is_open = busy_and_hours("Los Pericos")
+    busy, hours, is_open, case = busy_and_hours("Los Pericos")
     if is_open:
-        return "Open", busy, hours
+        if case == 1:
+            hours = "Closing in less than 1 hour"
+            return f'Open\n{busy}\n{hours}'
+        else:
+            return "Open", busy, hours
     else:
         return f"Closed\nTomorrow's hours: {hours}"
 
 if __name__ == "__main__":
-    busy, hours, is_open = busy_and_hours("Los Pericos")
+    busy, hours, is_open = busy_and_hours("Bay Tree Campus Store")
     print(busy, hours, is_open)

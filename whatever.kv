@@ -48,7 +48,8 @@ WindowManager:
                 #background_color: (253/255,199/255,0,1)
                 #background_color:utils.get_color_from_hex('#fdc700')
 
-                on_release: 
+                on_release:
+                    check_UCSC_fitness()
                     app.root.current = "Fitness"
                     root.manager.transition.direction = "up"
             RoundedButton:
@@ -59,7 +60,8 @@ WindowManager:
                 background_normal:''
                 #background_color: (253/255,199/255,0,1)
                 #background_color:utils.get_color_from_hex('#fdc700')
-                on_release: 
+                on_release:
+                    check_UCSC_mchenry()
                     app.root.current = "Library"
                     root.manager.transition.direction = "up"
             RoundedButton:
@@ -70,7 +72,8 @@ WindowManager:
                 background_normal:''
                 #background_color: (253/255,199/255,0,1)
                 #background_color:utils.get_color_from_hex('#fdc700')
-                on_release: 
+                on_release:
+                    check_UCSC_baytree()
                     app.root.current = "Baytree"
                     root.manager.transition.direction = "up"
             RoundedButton:
@@ -81,7 +84,8 @@ WindowManager:
                 background_normal:''
                 #background_color: (253/255,199/255,0,1)
                 #background_color:utils.get_color_from_hex('#fdc700')
-                on_release: 
+                on_release:
+                    check_UCSC_sne()
                     app.root.current = "S&E"
                     root.manager.transition.direction = "up"
 
@@ -258,7 +262,6 @@ WindowManager:
             underline: True
 
         Label:
-            #text: "UCSC Fitness Center"
             text: f'Status: {check_UCSC_baytree()}'
             canvas.before:
                 Color:
