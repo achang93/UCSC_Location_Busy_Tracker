@@ -150,11 +150,11 @@ WindowManager:
                 #text: "UCSC Fitness Center"
                 center_x:self.parent.center_x
                 center_y:self.parent.center_y
-                font_name: 'Small Island.otf'
+                font_name: 'Montserrat-Bold.ttf'
                 text: f'Status: {check_UCSC_fitness()}'
                 #color of text
                 color:(0,1,0,1) if check_UCSC_fitness()[0]=='O' else (1,0,0,1)
-                font_size: 75
+                font_size: 65
                 size_hint:(1,0.4)
                 bold: True
     
@@ -213,11 +213,11 @@ WindowManager:
                 center_x:self.parent.center_x
                 center_y:self.parent.center_y
                 #text: "UCSC Fitness Center"
-                font_name: 'Small Island.otf'
+                font_name: 'Montserrat-Bold.ttf'
                 text: f'Status: {check_UCSC_mchenry()}'
                 #color of text
                 color:(14/255, 97/255, 14/255,1) if check_UCSC_mchenry()[0]=='O' else (1,0,0,1)
-                font_size: 75
+                font_size: 65
                 size_hint:(1,0.4)
                 bold: True
     
@@ -276,11 +276,11 @@ WindowManager:
             Label:
                 center_x:self.parent.center_x
                 center_y:self.parent.center_y
-                font_name: 'Small Island.otf'
+                font_name: 'Montserrat-Bold.ttf'
                 text: f'Status: {check_UCSC_baytree()}'
                 #color of text
                 color:(14/255, 97/255, 14/255,1) if check_UCSC_baytree()[0]=='O' else (1,0,0,1)
-                font_size: 75
+                font_size: 65
                 size_hint:(1,0.4)
                 bold: True
     
@@ -339,11 +339,11 @@ WindowManager:
                 #text: "UCSC Fitness Center"
                 center_x:self.parent.center_x
                 center_y:self.parent.center_y
-                font_name: 'Small Island.otf'
+                font_name: 'Montserrat-Bold.ttf'
                 text: f'Status: {check_UCSC_sne()}'
                 #color of text
                 color:(14/255, 97/255, 14/255,1) if check_UCSC_sne()[0]=='O' else (1,0,0,1)
-                font_size: 75
+                font_size: 65
                 size_hint:(1,0.4)
                 bold: True
     
