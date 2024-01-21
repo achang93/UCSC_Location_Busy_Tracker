@@ -160,7 +160,7 @@ def check_UCSC_sne():
         return f"Closed\nTomorrow's hours: {hours}"
 
 def check_UCSC_baytree():
-    busy, hours, is_open, case = busy_and_hours("Los Pericos")
+    busy, hours, is_open, case = busy_and_hours("Bay Tree Campus Store")
     if is_open:
         if case == 1:
             hours = "Closing in less than 1 hour"
@@ -171,5 +171,5 @@ def check_UCSC_baytree():
         return f"Closed\nTomorrow's hours: {hours}"
 
 if __name__ == "__main__":
-    busy, hours, is_open = busy_and_hours("Bay Tree Campus Store")
-    print(busy, hours, is_open)
+    busy, hours, is_open, val = busy_and_hours("Bay Tree Campus Store")
+    print(busy, hours, is_open, val)
