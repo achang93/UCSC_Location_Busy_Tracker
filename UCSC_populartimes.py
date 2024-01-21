@@ -64,7 +64,8 @@ def busy_and_hours(location):
     place_ids = {"McHenry Library": "ChIJk7eypKFBjoAR87wpNgAjQek",
                  "Fitness Center": "ChIJVRW6fKRBjoARlWkP543vP7g",
                  "Bay Tree Campus Store": "ChIJmWae1aBBjoARhPuzroaHOxg",
-                 "Science and Engineering Library": "ChIJWeGcqQpBjoARohHiF-L7tB0"}
+                 "Science and Engineering Library": "ChIJWeGcqQpBjoARohHiF-L7tB0",
+                 "Los Pericos": "ChIJERL3niVAjoARl8XPdDVqQ8U"}
 
     # raise exception if the place_id isnt found
     try:
@@ -97,9 +98,31 @@ def busy_and_hours(location):
     if "Closed" in opening_hours:
         return check_how_busy(data), opening_hours[opening_hours.find("Closed"):], is_open
 
+
     opening_hours = opening_hours[opening_hours.find(":") + 2:]
     opening_hours = ''.join(s for s in opening_hours if ord(s)>31 and ord(s)<126)
     opening_hours = opening_hours[0:opening_hours.find("M") + 1] + "-" + opening_hours[opening_hours.find("M") + 1:]
+
+    y = opening_hours[opening_hours.find("M") + 1:]
+    ending = opening_hours[-2:]
+    print(ending)
+    y = str(y)
+    y = y[1:]
+    x = 0
+    for i in range(len(y)):
+        if y[i] == ':':
+            break
+        else:
+            x += 1
+    y = y[:x]
+    if ending == 'PM':
+        y = int(y) + 12
+
+    print(y)
+    print(int(datetime.datetime.now().strftime("%H")))
+
+    if int(y) - int(datetime.datetime.now().strftime("%H")) == 1:
+        return check_how_busy(data), "Closes in less than 1 hour", is_open
 
     return check_how_busy(data), opening_hours, is_open
 
@@ -126,12 +149,12 @@ def check_UCSC_sne():
         return f"Closed\nTomorrow's hours: {hours}"
 
 def check_UCSC_baytree():
-    busy, hours, is_open = busy_and_hours("Bay Tree Campus Store")
+    busy, hours, is_open = busy_and_hours("Los Pericos")
     if is_open:
         return "Open", busy, hours
     else:
         return f"Closed\nTomorrow's hours: {hours}"
 
 if __name__ == "__main__":
-    busy, hours, is_open = busy_and_hours("Bay Tree Campus Store")
+    busy, hours, is_open = busy_and_hours("Los Pericos")
     print(busy, hours, is_open)
