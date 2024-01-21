@@ -65,7 +65,8 @@ def busy_and_hours(location):
                  "Fitness Center": "ChIJVRW6fKRBjoARlWkP543vP7g",
                  "Bay Tree Campus Store": "ChIJmWae1aBBjoARhPuzroaHOxg",
                  "Science and Engineering Library": "ChIJWeGcqQpBjoARohHiF-L7tB0",
-                 "Safeway": "ChIJBxA1LHlqjoARReZVYMFRoJU"}
+                 "Safeway": "ChIJBxA1LHlqjoARReZVYMFRoJU",
+                 "711": "ChIJG5sE1J9qjoARPytk3T46iYQ"}
 
     # raise exception if the place_id isnt found
     try:
@@ -118,6 +119,9 @@ def busy_and_hours(location):
     if ending == 'PM':
         y = int(y) + 12
     # bottom if statement is to check whether it is 1 hr away from closing
+    if y == "Open 24 hours":
+        return check_how_busy(data), "Open 24 hours", is_open, 0
+
     if int(y) - int(datetime.datetime.now().strftime("%H")) == 1:
         return check_how_busy(data), opening_hours, is_open, 1
 
@@ -165,7 +169,7 @@ def check_UCSC_mchenry():
 
 def check_UCSC_sne():
     #print("sne")
-    busy, hours, is_open, case = busy_and_hours("Science and Engineering Library")
+    busy, hours, is_open, case = busy_and_hours("711")
     check_next = int(datetime.datetime.now().strftime("%H")) 
     if is_open:
         if case == 1:
@@ -176,7 +180,7 @@ def check_UCSC_sne():
             hours = "Closing at " + str(check_next+1) + ":00 " + ending
             return f'Open\n{busy}\n{hours}'
         else:
-            return "Open", busy, hours
+            return f'Open\n{busy}\n{hours}'
     else:
         if check_next < 12:
             return f"Closed\nToday's hours: {hours}"
