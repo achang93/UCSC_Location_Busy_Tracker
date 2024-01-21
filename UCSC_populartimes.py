@@ -64,9 +64,7 @@ def busy_and_hours(location):
     place_ids = {"McHenry Library": "ChIJk7eypKFBjoAR87wpNgAjQek",
                  "Fitness Center": "ChIJVRW6fKRBjoARlWkP543vP7g",
                  "Bay Tree Campus Store": "ChIJmWae1aBBjoARhPuzroaHOxg",
-                 "Science and Engineering Library": "ChIJWeGcqQpBjoARohHiF-L7tB0",
-                 "Safeway": "ChIJBxA1LHlqjoARReZVYMFRoJU",
-                 "711": "ChIJG5sE1J9qjoARPytk3T46iYQ"}
+                 "Science and Engineering Library": "ChIJWeGcqQpBjoARohHiF-L7tB0"}
 
     # raise exception if the place_id isnt found
     try:
@@ -97,6 +95,7 @@ def busy_and_hours(location):
     opening_hours = opening_hours_times[day]
 
     if "Closed" in opening_hours:
+        print("it went here")
         return check_how_busy(data), opening_hours[opening_hours.find("Closed"):], is_open, 0
 
 
@@ -120,11 +119,14 @@ def busy_and_hours(location):
         y = int(y) + 12
     # bottom if statement is to check whether it is 1 hr away from closing
     if y == "Open 24 hours":
+        print("it went here1")
         return check_how_busy(data), "Open 24 hours", is_open, 0
 
     if int(y) - int(datetime.datetime.now().strftime("%H")) == 1:
+        print("it went here2")
         return check_how_busy(data), opening_hours, is_open, 1
 
+    print("it went here3")
     return check_how_busy(data), opening_hours, is_open, 0
 
 def check_UCSC_fitness():
@@ -169,7 +171,7 @@ def check_UCSC_mchenry():
 
 def check_UCSC_sne():
     #print("sne")
-    busy, hours, is_open, case = busy_and_hours("711")
+    busy, hours, is_open, case = busy_and_hours("Science and Engineering Library")
     check_next = int(datetime.datetime.now().strftime("%H")) 
     if is_open:
         if case == 1:
@@ -188,12 +190,16 @@ def check_UCSC_sne():
             return f"Closed\nTomorrow's hours: {hours}"
 
 def check_UCSC_baytree():
-    busy, hours, is_open, case = busy_and_hours("Safeway")
+    busy, hours, is_open, case = busy_and_hours("Bay Tree Campus Store")
     check_next = int(datetime.datetime.now().strftime("%H"))
-    print(check_next)
+    #print(datetime.datetime.today().weekday())
+    if int(datetime.datetime.today().weekday()) == 5:
+        return f'Closed\nTomorrow\'s hours: Closed'
+    if int(datetime.datetime.today().weekday()) == 6:
+        return f'Closed\nTomorrow\'s hours: {hours}'
+    print(hours)
     if is_open:
         if case == 1:
-            
             if check_next+1 == 13:
                 check_next = 1
             ending = hours[-2:]
