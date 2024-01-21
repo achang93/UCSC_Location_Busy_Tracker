@@ -25,7 +25,10 @@ def get_busy_data(current_day, current_hour, api_key, place_id):
         print("Invalid place_id: May not have data to read or doesn't exist")
 
     # is the data for the current day
-    current_day_data = all_week_data[current_day]
+    if current_day == 6:
+        current_day_data = all_week_data[6]
+    else:
+        current_day_data = all_week_data[current_day]
     
     # data on the current hour
     current_hour_data = current_day_data.get("data")[current_hour]
@@ -74,6 +77,7 @@ def busy_and_hours(location):
 
     # number based on how busy
     data = get_busy_data(day, time, api_key, place_id)
+
     if (data == 0):
         if day < 6:
             day = day + 1
@@ -87,6 +91,7 @@ def busy_and_hours(location):
 
     # data for opening hours
     opening_hours_data = details_results['opening_hours']
+    print(details_results)
     is_open = opening_hours_data.get("open_now")
 
     # data for each weekday
@@ -94,9 +99,10 @@ def busy_and_hours(location):
 
     opening_hours = opening_hours_times[day]
 
-    if "Closed" in opening_hours:
-        print("it went here")
-        return check_how_busy(data), opening_hours[opening_hours.find("Closed"):], is_open, 0
+
+    #if "Closed" in opening_hours:
+    #    print("it went here")
+    #    return check_how_busy(data), opening_hours[opening_hours.find("Closed"):], is_open, 0
 
 
     opening_hours = opening_hours[opening_hours.find(":") + 2:]
@@ -115,6 +121,7 @@ def busy_and_hours(location):
         else:
             x += 1
     y = y[:x]
+
     if ending == 'PM':
         y = int(y) + 12
     # bottom if statement is to check whether it is 1 hr away from closing
@@ -127,19 +134,22 @@ def busy_and_hours(location):
         return check_how_busy(data), opening_hours, is_open, 1
 
     print("it went here3")
+    #print(time)
+    #print(day)
+
     return check_how_busy(data), opening_hours, is_open, 0
 
 def check_UCSC_fitness():
-    #print("fitness")
+
     busy, hours, is_open, case = busy_and_hours("Fitness Center")
-    check_next = int(datetime.datetime.now().strftime("%H")) 
+    check_next = int(datetime.datetime.now().strftime("%H"))
     if is_open:
         if case == 1:
-            
-            if check_next+1 == 13:
+
+            if check_next + 1 == 13:
                 check_next = 1
             ending = hours[-2:]
-            hours = "Closing at " + str(check_next+1) + ":00 " + ending
+            hours = "Closing at " + str(check_next + 1) + ":00 " + ending
             return f'Open\n{busy}\n{hours}'
         else:
             return f'Open\n{busy}\n{hours}'
@@ -153,8 +163,10 @@ def check_UCSC_fitness():
 def check_UCSC_mchenry():
     #print("mchenry")
     busy, hours, is_open, case = busy_and_hours("McHenry Library")
-    check_next = int(datetime.datetime.now().strftime("%H")) 
+    check_next = int(datetime.datetime.now().strftime("%H"))
+
     if is_open:
+        return 'Open', busy, hours
         if case == 1:
             if check_next+1 == 13:
                 check_next = 1
@@ -165,7 +177,10 @@ def check_UCSC_mchenry():
             return f'Open\n{busy}\n{hours}'
     else:
         if check_next < 12:
-            return f"Closed\nToday's hours: {hours}"
+            if int(datetime.datetime.today().weekday()) == 6:
+                return f'Closed\nToday\'s hours: 10:00AM-12:00AM'
+            else:
+                return f"Closed\nToday's hours: {hours}"
         else:
             return f"Closed\nTomorrow's hours: {hours}"
 
@@ -185,7 +200,10 @@ def check_UCSC_sne():
             return f'Open\n{busy}\n{hours}'
     else:
         if check_next < 12:
-            return f"Closed\nToday's hours: {hours}"
+            if int(datetime.datetime.today().weekday()) == 6:
+                return f'Closed\nToday\'s hours: 10:00AM-12:00AM'
+            else:
+                return f"Closed\nToday's hours: {hours}"
         else:
             return f"Closed\nTomorrow's hours: {hours}"
 
@@ -214,6 +232,6 @@ def check_UCSC_baytree():
             return f"Closed\nTomorrow's hours: {hours}"
 
 if __name__ == "__main__":
-    busy, hours, is_open, val = busy_and_hours("Bay Tree Campus Store")
+    busy, hours, is_open, val = busy_and_hours("McHenry Library")
     #print(busy, hours, is_open, val)
-    print(check_UCSC_baytree())
+    print(check_UCSC_mchenry())
