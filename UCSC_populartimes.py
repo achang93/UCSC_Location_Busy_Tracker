@@ -140,7 +140,7 @@ def check_UCSC_fitness():
             hours = "Closing at " + str(check_next+1) + ":00 " + ending
             return f'Open\n{busy}\n{hours}'
         else:
-            return "Open", busy, hours
+            return f'Open\n{busy}\n{hours}'
     else:
         if check_next < 12:
             return f"Closed\nToday's hours: {hours}"
@@ -160,7 +160,7 @@ def check_UCSC_mchenry():
             hours = "Closing at " + str(check_next+1) + ":00 " + ending
             return f'Open\n{busy}\n{hours}'
         else:
-            return "Open", busy, hours
+            return f'Open\n{busy}\n{hours}'
     else:
         if check_next < 12:
             return f"Closed\nToday's hours: {hours}"
@@ -200,7 +200,6 @@ def check_UCSC_baytree():
             hours = "Closing at " + str(check_next+1) + ":00 " + ending
             return f'Open\n{busy}\n{hours}'
         else:
-            #return "Open", busy, hours
             return f'Open\n{busy}\n{hours}'
     else:
         if check_next < 12:
