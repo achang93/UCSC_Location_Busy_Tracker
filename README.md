@@ -22,7 +22,7 @@ your API key (it will be at line 61).
 
 Once you have everything set up and installed, run the program counter.py on the terminal
 with the command:
-   python3 counter.py
+     python3 counter.py
 
 # Front end:
 To create the application for the user, we decided to use Kivy to help the user
