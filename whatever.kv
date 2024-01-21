@@ -1,5 +1,9 @@
 #:kivy 2.0.0
 #:import utils kivy.utils
+#:import check_UCSC_fitness UCSC_populartimes.check_UCSC_fitness
+#:import check_UCSC_mchenry UCSC_populartimes.check_UCSC_mchenry
+#:import check_UCSC_sne UCSC_populartimes.check_UCSC_sne
+#:import check_UCSC_baytree UCSC_populartimes.check_UCSC_baytree
 
 WindowManager:
     FirstWindow:
@@ -111,7 +115,8 @@ WindowManager:
         spacing: 30
 
         Label:
-            text: "UCSC Fitness Center"
+            #text: "UCSC Fitness Center"
+            text: f'Status: {check_UCSC_fitness()}'
             canvas.before:
                 Color:
                     rgba:(1,1,1,1)

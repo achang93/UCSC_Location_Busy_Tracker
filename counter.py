@@ -1,14 +1,20 @@
 import kivy
 from kivy.app import App
+from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
+from UCSC_populartimes import check_UCSC_fitness
 
-Window.size = (500,700)
+Window.size = (700,700)
 #Define different Screens
 class FirstWindow(Screen):
+    #def __init__(self, **kwargs):
+    #    super(Screen, self).__init__(**kwargs)
+    #    busy, hours, is_open = busy_and_hours("Fitness Center")
+    #    self.add_widget(Label(text=busy))
     pass
 class SecondWindow(Screen):
     pass
