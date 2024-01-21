@@ -3,6 +3,14 @@ It will count and measure the amount of people in a given facility.
 Shows hours of operation, if it is currently open, and how busy it is currently.
 It has a UI for ease of use; just click on the location and get the most recent data.
 
+# Directions:
+Make sure to create your own API key before running the program. With the use of the
+API key, you can access the Google Maps APIs. To learn more about creating an API key,
+visit https://developers.google.com/maps/documentation/javascript/get-api-key.
+
+Once you have created an API key, you have to edit the "counter.py" file to input
+your API key (it will be at line 61).
+
 # Front end:
 To create the application for the user, we decided to use Kivy to help the user
 access different locations to check the busyness and operational hours. We
