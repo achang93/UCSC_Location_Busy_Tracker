@@ -7,11 +7,11 @@ It has a UI for ease of use; just click on the location and get the most recent 
 - Clone this git into your folder
 - Go to terminal
   - Install Kivy.
-pip/pip3 install kivy
+    pip/pip3 install kivy
   - Install Google Maps.
-pip/pip3 install googlemaps
+    pip/pip3 install googlemaps
   - Install Geopy
-pip/pip3 install geopy
+    pip/pip3 install geopy
 - Make sure to create your own API key before running the program. With the use of the
 API key, you can access the Google Maps APIs. To learn more about creating an API key,
 visit https://developers.google.com/maps/documentation/javascript/get-api-key.
