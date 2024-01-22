@@ -139,10 +139,7 @@ def busy_and_hours(location):
 
     return check_how_busy(data), opening_hours, is_open, 0
 
-def check_UCSC_fitness():
-
-    busy, hours, is_open, case = busy_and_hours("Fitness Center")
-    check_next = int(datetime.datetime.now().strftime("%H"))
+def open_close(check_next, busy, hours, is_open, case):
     if is_open:
         if case == 1:
 
@@ -160,51 +157,30 @@ def check_UCSC_fitness():
             return f"Closed\nTomorrow's hours: {hours}"
 
 
+def check_UCSC_fitness():
+
+    busy, hours, is_open, case = busy_and_hours("Fitness Center")
+    check_next = int(datetime.datetime.now().strftime("%H"))
+
+    return open_close(check_next, busy, hours, is_open, case)
+    
+
+
 def check_UCSC_mchenry():
     #print("mchenry")
     busy, hours, is_open, case = busy_and_hours("McHenry Library")
     check_next = int(datetime.datetime.now().strftime("%H"))
 
-    if is_open:
-        if case == 1:
-            if check_next+1 == 13:
-                check_next = 1
-            ending = hours[-2:]
-            hours = "Closing at " + str(check_next+1) + ":00 " + ending
-            return f'Open\n{busy}\n{hours}'
-        else:
-            return f'Open\n{busy}\n{hours}'
-    else:
-        if check_next < 12:
-            if int(datetime.datetime.today().weekday()) == 6:
-                return f'Closed\nToday\'s hours: 10:00AM-12:00AM'
-            else:
-                return f"Closed\nToday's hours: {hours}"
-        else:
-            return f"Closed\nTomorrow's hours: {hours}"
+    return open_close(check_next, busy, hours, is_open, case)
+
+
 
 def check_UCSC_sne():
     #print("sne")
     busy, hours, is_open, case = busy_and_hours("Science and Engineering Library")
     check_next = int(datetime.datetime.now().strftime("%H")) 
-    if is_open:
-        if case == 1:
-            
-            if check_next+1 == 13:
-                check_next = 1
-            ending = hours[-2:]
-            hours = "Closing at " + str(check_next+1) + ":00 " + ending
-            return f'Open\n{busy}\n{hours}'
-        else:
-            return f'Open\n{busy}\n{hours}'
-    else:
-        if check_next < 12:
-            if int(datetime.datetime.today().weekday()) == 6:
-                return f'Closed\nToday\'s hours: 10:00AM-12:00AM'
-            else:
-                return f"Closed\nToday's hours: {hours}"
-        else:
-            return f"Closed\nTomorrow's hours: {hours}"
+    
+    return open_close(check_next, busy, hours, is_open, case)
 
 def check_UCSC_baytree():
     busy, hours, is_open, case = busy_and_hours("Bay Tree Campus Store")
@@ -214,7 +190,6 @@ def check_UCSC_baytree():
         return f'Closed\nTomorrow\'s hours: Closed'
     if int(datetime.datetime.today().weekday()) == 6:
         return f'Closed\nTomorrow\'s hours: {hours}'
-    print(hours)
     if is_open:
         if case == 1:
             if check_next+1 == 13:

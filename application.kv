@@ -42,7 +42,7 @@ WindowManager:
             
             RoundedButton:
                 text: "Fitness Center"
-                font_size: 75
+                font_size: 45
                 bold: True
                 sizehint: 0.1,0.1
                 background_normal:''
@@ -50,14 +50,14 @@ WindowManager:
                 #background_color:utils.get_color_from_hex('#fdc700')
 
                 on_release:
-                    check_UCSC_fitness()
+                    #check_UCSC_fitness()
                     app.root.current = "Fitness"
                     root.manager.transition.direction = "up"
             RoundedButton:
                 text: "McHenry Library"
-                font_size: 75
+                font_size: 45
                 on_release:
-                    check_UCSC_mchenry()
+                    #check_UCSC_mchenry()
                     app.root.current = "Library"
                     root.manager.transition.direction = "up"
                 
@@ -69,26 +69,26 @@ WindowManager:
                 
             RoundedButton:
                 text: "Bay Tree Bookstore"
-                font_size: 75
+                font_size: 45
                 bold: True
                 sizehint: 0.1,0.1
                 background_normal:''
                 #background_color: (253/255,199/255,0,1)
                 #background_color:utils.get_color_from_hex('#fdc700')
                 on_release:
-                    check_UCSC_baytree()
+                    #check_UCSC_baytree()
                     app.root.current = "Baytree"
                     root.manager.transition.direction = "up"
             RoundedButton:
                 text: "S&E Library"
-                font_size: 75
+                font_size: 45
                 bold: True
                 sizehint: 0.1,0.1
                 background_normal:''
                 #background_color: (253/255,199/255,0,1)
                 #background_color:utils.get_color_from_hex('#fdc700')
                 on_release:
-                    check_UCSC_sne()
+                    #check_UCSC_sne()
                     app.root.current = "S&E"
                     root.manager.transition.direction = "up"
 
@@ -136,7 +136,7 @@ WindowManager:
                     
             #color of text
             color:utils.get_color_from_hex('#fdc700')
-            font_size: 100
+            font_size: 60
             size_hint:(1,0.2)
             bold: True
             italic: True
@@ -199,7 +199,7 @@ WindowManager:
                     
             #color of text
             color:utils.get_color_from_hex('#fdc700')
-            font_size: 100
+            font_size: 70
             size_hint:(1,0.2)
             bold: True
             italic: True
@@ -263,7 +263,7 @@ WindowManager:
                     
             #color of text
             color:utils.get_color_from_hex('#fdc700')
-            font_size: 100
+            font_size: 70
             size_hint:(1,0.2)
             bold: True
             italic: True
@@ -325,7 +325,7 @@ WindowManager:
                     
             #color of text
             color:utils.get_color_from_hex('#fdc700')
-            font_size: 100
+            font_size: 70
             size_hint:(1,0.2)
             bold: True
             italic: True
