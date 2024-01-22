@@ -152,9 +152,9 @@ def open_close(check_next, busy, hours, is_open, case):
             return f'Open\n{busy}\n{hours}'
     else:
         if check_next < 12:
-            return f"Closed\nToday's hours: {hours}"
+            return f"Closed\nToday's hours:\n{hours}"
         else:
-            return f"Closed\nTomorrow's hours: {hours}"
+            return f"Closed\nTomorrow's hours:\n{hours}"
 
 
 def check_UCSC_fitness():
@@ -179,7 +179,7 @@ def check_UCSC_sne():
     #print("sne")
     busy, hours, is_open, case = busy_and_hours("Science and Engineering Library")
     check_next = int(datetime.datetime.now().strftime("%H")) 
-    
+
     return open_close(check_next, busy, hours, is_open, case)
 
 def check_UCSC_baytree():
@@ -189,7 +189,7 @@ def check_UCSC_baytree():
     if int(datetime.datetime.today().weekday()) == 5:
         return f'Closed\nTomorrow\'s hours: Closed'
     if int(datetime.datetime.today().weekday()) == 6:
-        return f'Closed\nTomorrow\'s hours: {hours}'
+        return f'Closed\nTomorrow\'s hours:\n{hours}'
     if is_open:
         if case == 1:
             if check_next+1 == 13:
@@ -201,9 +201,9 @@ def check_UCSC_baytree():
             return f'Open\n{busy}\n{hours}'
     else:
         if check_next < 12:
-            return f"Closed\nToday's hours: {hours}"
+            return f"Closed\nToday's hours:\n{hours}"
         else:
-            return f"Closed\nTomorrow's hours: {hours}"
+            return f"Closed\nTomorrow's hours:\n{hours}"
 
 if __name__ == "__main__":
     busy, hours, is_open, val = busy_and_hours("McHenry Library")
