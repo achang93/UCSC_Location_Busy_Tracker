@@ -166,7 +166,6 @@ def check_UCSC_mchenry():
     check_next = int(datetime.datetime.now().strftime("%H"))
 
     if is_open:
-        return 'Open', busy, hours
         if case == 1:
             if check_next+1 == 13:
                 check_next = 1
